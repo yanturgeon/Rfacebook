@@ -266,6 +266,16 @@ replyDataToDF <- function(json){
   return(df)
 }
 
+memberDataToDF <- function(user_data, private_info){
+  df <- data.frame(
+    id = unlistWithNA(user_data, 'id'),
+    name = unlistWithNA(user_data, 'name'),
+    first_name = unlistWithNA(user_data, 'first_name'),
+    last_name = unlistWithNA(user_data, 'last_name'),
+    administrator = unlistWithNA(user_data, 'administrator'),
+    stringsAsFactors=F)
+  return(df)
+}
 
 unlistWithNA <- function(lst, field){
 	if (length(field)==1){
