@@ -1,0 +1,29 @@
+#' @description
+#' \code{getDescription} retrieves description of a group
+#'
+#' @param A group ID
+#'
+#'#' @author
+#' Yan Turgeon
+
+#' @param token Either a temporary access token created at
+#' \url{https://developers.facebook.com/tools/explorer} or the OAuth token 
+#' created with \code{fbOAuth}.
+#' 
+#' @examples \dontrun{
+#' ## Retrieves description of a Facebook group
+#'	load("fb_oauth")
+#'	ids <- searchGroup(name="rusers", token=fb_oauth)
+#'  ids[1,] # id = 18533493739
+#' ## Retrieves members ID for R-Users Facebook group
+#'  fb <- getDescription(group_id="18533493739", token=fb_oauth)
+#' 
+
+getDescription <- function(group_id, token)
+{
+  url = paste0("https://graph.facebook.com/", group_id, "?fields=name,id,description,email,privacy")
+  content <- callAPI(url=url, token=token)
+  
+  df <- data.frame(cbind(name=content$name, id=content$id, description=content$description, privacy=content$privacy, email=content$email))
+  return(df)
+}
