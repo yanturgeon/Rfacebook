@@ -172,7 +172,7 @@ getGroup <- function(group_id, token, n=25, since=NULL, until=NULL, feed=TRUE, a
 #'		since='2013/01/01', until='2013/01/31')
 #' }
 
-searchGroup <- function(name, token, n=25, api=NULL){
+searchGroup <- function(name, token, n=500, api=NULL){
 	url <- paste0('https://graph.facebook.com/search?q=',
 		name, '&type=group&limit=', n)
 	# making query
